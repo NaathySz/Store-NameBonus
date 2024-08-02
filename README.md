@@ -11,6 +11,9 @@ Config will be auto generated. Default:
   ],
   "bonus_credits": 100,
   "interval_in_seconds": 300,
+  "show_ad_message": true,
+  "ad_message_delay_seconds": 120,
+  "ad_message": "Add '{blue}YourAd{white}' to your nickname and earn bonus credits!",
   "ConfigVersion": 1
 }
 ```

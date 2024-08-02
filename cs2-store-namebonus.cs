@@ -32,7 +32,7 @@ namespace Store_AdBonus
     public class Store_AdBonus : BasePlugin, IPluginConfig<Store_AdBonusConfig>
     {
         public override string ModuleName => "Store Module [Name Bonus]";
-        public override string ModuleVersion => "0.0.1";
+        public override string ModuleVersion => "0.0.2";
         public override string ModuleAuthor => "Nathy";
 
         private IStoreApi? storeApi;

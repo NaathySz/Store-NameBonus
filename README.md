@@ -14,6 +14,7 @@ Config will be auto generated. Default:
   "show_ad_message": true,
   "ad_message_delay_seconds": 120,
   "ad_message": "Add '{blue}YourAd{white}' to your nickname and earn bonus credits!",
+  "show_ad_message_to_non_advertisers_only": true,
   "ConfigVersion": 1
 }
 ```

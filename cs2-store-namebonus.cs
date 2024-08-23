@@ -27,12 +27,16 @@ namespace Store_AdBonus
 
         [JsonPropertyName("ad_message")]
         public string AdMessage { get; set; } = "Add '{blue}YourAd{white}' to your nickname and earn bonus credits!";
+
+        [JsonPropertyName("show_ad_message_to_non_advertisers_only")]
+        public bool ShowAdMessageToNonAdvertisersOnly { get; set; } = true;
+
     }
 
     public class Store_AdBonus : BasePlugin, IPluginConfig<Store_AdBonusConfig>
     {
         public override string ModuleName => "Store Module [Name Bonus]";
-        public override string ModuleVersion => "0.0.2";
+        public override string ModuleVersion => "0.1.0";
         public override string ModuleAuthor => "Nathy";
 
         private IStoreApi? storeApi;
@@ -130,11 +134,26 @@ namespace Store_AdBonus
         {
             var message = ReplaceColorPlaceholders(Config.AdMessage);
             var players = Utilities.GetPlayers();
+            
             foreach (var player in players)
             {
                 if (player != null && !player.IsBot && player.IsValid)
                 {
-                    player.PrintToChat(Localizer["Prefix"] + message);
+                    bool hasAdText = false;
+
+                    foreach (var adText in Config.AdTexts)
+                    {
+                        if (player.PlayerName.Contains(adText))
+                        {
+                            hasAdText = true;
+                            break;
+                        }
+                    }
+
+                    if (!Config.ShowAdMessageToNonAdvertisersOnly || !hasAdText)
+                    {
+                        player.PrintToChat(Localizer["Prefix"] + message);
+                    }
                 }
             }
         }
